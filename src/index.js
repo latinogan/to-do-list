@@ -1,4 +1,5 @@
-  import './index.css'; 
+/* eslint-disable */
+/*import './index.css';*/
 
 const taskinput = document.querySelector('.insert-text');
 const content = document.querySelector('.content');
@@ -33,6 +34,21 @@ function showTodo() {
 }
 showTodo();
 
+function updateStatus(selectedTask) {
+    /* console.log(selectedTask) */
+      // getting paragraph that contains task name
+      const taskName = selectedTask.parentElement.childNodes[3];// esto deberia subrayar el texto
+      if (selectedTask.checked) {
+        taskName.classList.add('checked');
+        // optional for the delted button completed
+        todos[selectedTask.id].completed = 'completed';
+      } else {
+        taskName.classList.remove('checked');
+        todos[selectedTask.id].completed = 'pending';
+      }
+      localStorage.setItem('todo-list', JSON.stringify(todos));
+    }
+
 function showMenu(selectedTask) {
   // console.log(selectedTask);
   const taskMenu = selectedTask.parentElement.childNodes[3];
@@ -44,7 +60,6 @@ function showMenu(selectedTask) {
     }
   });
 }
-
 
 function editTask(taskId, taskName) {
 //  console.log(taskId ,taskName)
@@ -60,20 +75,7 @@ function deleteTask(deleteId) {
   showTodo();
 }
 
-function updateStatus(selectedTask) {
-/* console.log(selectedTask) */
-  // getting paragraph that contains task name
-  const taskName = selectedTask.parentElement.childNodes[3];// esto deberia subrayar el texto
-  if (selectedTask.checked) {
-    taskName.classList.add('checked');
-    // optional for the delted button completed
-    todos[selectedTask.id].completed = 'completed';
-  } else {
-    taskName.classList.remove('checked');
-    todos[selectedTask.id].completed = 'pending';
-  }
-  localStorage.setItem('todo-list', JSON.stringify(todos));
-}
+
 
 taskinput.addEventListener('keyup', (e) => {
   const userTask = taskinput.value.trim();
@@ -94,8 +96,6 @@ taskinput.addEventListener('keyup', (e) => {
     showTodo();
   }
 });
-
-
 
 /* import './index.css';
 import {showTodo} from "./modules/functions.js"
