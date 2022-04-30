@@ -1,5 +1,5 @@
 
-import './index.css';
+/*import './index.css';*/
 
 const taskinput = document.querySelector('.insert-text');
 const content = document.querySelector('.content');
@@ -44,7 +44,7 @@ function updateStatus(selectedTask) {
     todos[selectedTask.id].completed = "completed";
   } else {
     taskName.classList.remove("checked");
-    todos[selectedTask.id].completed = "false";
+    todos[selectedTask.id].completed = "pending";
   }
   localStorage.setItem("todo-list", JSON.stringify(todos));
 }
