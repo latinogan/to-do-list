@@ -3,7 +3,7 @@
 
 const taskinput = document.querySelector('.insert-text');
 const content = document.querySelector('.content');
-
+// function
 let editId;
 let isEditedTask = false;
 // JSON.parse(localStorage.getItem("todo-list"))
