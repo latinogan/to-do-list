@@ -44,6 +44,10 @@
   padding-right: 200px;
 }
 
+#task .checked {
+  text-decoration: line-through;
+}
+
 .task-menu {
   margin: 10px 0 0 0;
   padding: 0;
@@ -59,7 +63,7 @@
 .setting .task-menu {
   position: absolute;
   padding: 5px 0;
-  left: -30px;
+  left: -80px;
   bottom: 20px;
   transform: scale(0);
   background: #fff;
@@ -69,7 +73,11 @@
   transition: transform 0.3s ease;
 }
 
-.setting:hover .task-menu {
+/* .setting:hover .task-menu {
+  transform: scale(1);
+} */
+
+.setting .task-menu.show {
   transform: scale(1);
 }
 
