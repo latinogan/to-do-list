@@ -1,5 +1,4 @@
-
-/*import './index.css';*/
+/* import './index.css'; */
 
 const taskinput = document.querySelector('.insert-text');
 const content = document.querySelector('.content');
@@ -39,27 +38,29 @@ function updateStatus(selectedTask) {
   // getting paragraph that contains task name
   const taskName = selectedTask.parentElement.childNodes[3]; // esto deberia subrayar el texto
   if (selectedTask.checked) {
-    taskName.classList.add("checked");
+    taskName.classList.add('checked');
     // optional for the delted button completed
-    todos[selectedTask.id].completed = "completed";
+    todos[selectedTask.id].completed = 'completed';
   } else {
-    taskName.classList.remove("checked");
-    todos[selectedTask.id].completed = "pending";
+    taskName.classList.remove('checked');
+    todos[selectedTask.id].completed = 'pending';
   }
-  localStorage.setItem("todo-list", JSON.stringify(todos));
+  localStorage.setItem('todo-list', JSON.stringify(todos));
 }
+updateStatus();
 
 function showMenu(selectedTask) {
   // console.log(selectedTask);
   const taskMenu = selectedTask.parentElement.childNodes[3];
-  taskMenu.classList.add("show");
-  document.addEventListener("click", (e) => {
+  taskMenu.classList.add('show');
+  document.addEventListener('click', (e) => {
     // removing show class from task menu on the document click
-    if (e.target.tagName !== "I" || e.target !== selectedTask) {
-      taskMenu.classList.remove("show");
+    if (e.target.tagName !== 'I' || e.target !== selectedTask) {
+      taskMenu.classList.remove('show');
     }
   });
 }
+showMenu();
 
 function editTask(taskId, taskName) {
   //  console.log(taskId ,taskName)
@@ -67,24 +68,26 @@ function editTask(taskId, taskName) {
   isEditedTask = true;
   taskinput.value = taskName;
 }
+editTask();
 
 function deleteTask(deleteId) {
   // removing selected array
   todos.splice(deleteId, 1);
-  localStorage.setItem("todo-list", JSON.stringify(todos));
+  localStorage.setItem('todo-list', JSON.stringify(todos));
   showTodo();
 }
+deleteTask();
 
-taskinput.addEventListener("keyup", (e) => {
+taskinput.addEventListener('keyup', (e) => {
   const userTask = taskinput.value.trim();
-  if (e.key === "Enter" && userTask) {
+  if (e.key === 'Enter' && userTask) {
     if (!isEditedTask) {
       if (!todos) {
         todos = [];
       }
       const taskInfo = {
         description: userTask,
-        completed: "false",
+        completed: 'false',
         index: todos.length + 1,
       };
       todos.push(taskInfo); // adding new task to todos abj
@@ -93,8 +96,8 @@ taskinput.addEventListener("keyup", (e) => {
       todos[editId].description = userTask;
     }
 
-    taskinput.value = " ";
-    localStorage.setItem("todo-list", JSON.stringify(todos));
+    taskinput.value = ' ';
+    localStorage.setItem('todo-list', JSON.stringify(todos));
     showTodo();
   }
 });
